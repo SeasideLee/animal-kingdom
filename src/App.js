@@ -5,8 +5,6 @@ import {UserSession} from 'blockstack'
 import Landing from './Landing'
 import SignedIn from './SignedIn'
 
-import Proxy from './setupProxy'
-
 class App extends Component {
 
     constructor() {
@@ -15,9 +13,6 @@ class App extends Component {
     }
 
     componentWillMount() {
-        if (process.env.NODE_ENV !== 'development') {
-            Proxy(this);
-        }
         const session = this.userSession
         if (!session.isUserSignedIn() && session.isSignInPending()) {
             session.handlePendingSignIn()
